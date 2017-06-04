@@ -3,7 +3,7 @@
 IPMARKER="PUBLICIP"
 NODE_IP=$1
 KEYSDIR="$HOME/keys"
-K8VERSION="v1.3.4_coreos.0"
+K8VERSION="v1.6.4_coreos.0"
 
 echo "setting k8s in $NODE_IP"
 

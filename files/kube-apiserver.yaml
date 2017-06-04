@@ -7,16 +7,16 @@ spec:
   hostNetwork: true
   containers:
   - name: kube-apiserver
-    image: quay.io/coreos/hyperkube:v1.3.4_coreos.0
+    image: quay.io/coreos/hyperkube:v1.6.4_coreos.0
     command:
     - /hyperkube
     - apiserver
     - --bind-address=0.0.0.0
-    - --etcd-servers=http://PUBLICIP:2379
+    - --etcd-servers=http://192.168.4.104:2379
     - --allow-privileged=true
     - --service-cluster-ip-range=10.3.0.0/24
     - --secure-port=443
-    - --advertise-address=PUBLICIP
+    - --advertise-address=192.168.4.104
     - --admission-control=NamespaceLifecycle,LimitRanger,ServiceAccount,ResourceQuota
     - --tls-cert-file=/etc/kubernetes/ssl/apiserver.pem
     - --tls-private-key-file=/etc/kubernetes/ssl/apiserver-key.pem
