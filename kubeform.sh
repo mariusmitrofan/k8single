@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IPMARKER="PUBLICIP"
-NODE_IP=$1
+NODE_IP="127.0.0.1"
 KEYSDIR="$HOME/keys"
 K8VERSION="v1.6.4_coreos.0"
 
@@ -61,7 +61,7 @@ sudo cp files/kube-scheduler.yaml /etc/kubernetes/manifests/
 sudo systemctl daemon-reload
 
 echo "configuring etcd"
-curl -s -X PUT -d "value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}" "http://$NODE_IP:2379/v2/keys/coreos.com/network/config"
+curl -s -X PUT -d "value={\"Network\":\"10.2.0.0/16\",\"Backend\":{\"Type\":\"vxlan\"}}" "http://127.0.0.1:2379/v2/keys/coreos.com/network/config"
 
 
 echo "starting kubernetes"
@@ -85,7 +85,7 @@ done
 #curl -s -H "Content-Type: application/json" -XPOST -d'{"apiVersion":"v1","kind":"Namespace","metadata":{"name":"kube-system"}}' "http://127.0.0.1:8080/api/v1/namespaces"
 
 echo "install kubectl"
-curl -s -O https://storage.googleapis.com/kubernetes-release/release/v1.3.4/bin/linux/amd64/kubectl
+curl -s -O https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
 sudo mv kubectl /opt/bin
 sudo chmod +x /opt/bin/kubectl
 
